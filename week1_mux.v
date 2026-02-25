@@ -1,9 +1,9 @@
 //4:1 MUX
 
 module MUX(
-  input  [7:0]  A, B, C, D,
-  input  [3:0 ] sel,
-  output [7:0]  X
+  input  [2:0]  A, B, C, D,
+  input  [1:0 ] sel,
+  output [2:0]  X
 );
 
   always@(*) begin
