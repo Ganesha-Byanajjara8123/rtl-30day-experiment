@@ -12,7 +12,7 @@ module MUX(
       2'b01: X = B;
       2'b10: X = C;
       2'b11: X = D;
-      default: X = 8'b00; 
+      default: X = 3'b00; 
       end
 endmodule
       
