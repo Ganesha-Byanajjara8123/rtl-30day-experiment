@@ -1,21 +1,32 @@
+// Code your testbench here
+// or browse Examples
 // 4:1 MUX tb code
 module MUX_tb;
-  input reg   [2:0]   A, B, C, D;
-  input reg   [1:0]   sel;
-  output wire [2:0]   X;
+   reg   [2:0]   A, B, C, D;
+   reg   [1:0]   sel;
+   wire [2:0]   X;
 
   MUX uut (
     .A(A), .B(B), .C(C), .D(D), .sel(sel), .X(X)
   );
   
 initial begin
-A=2'b00; sel=2'b00; #10;
-A=2'b01; sel=2'b01; #10;
-A=2'b10; sel=2'b10; #10;
-A=2'b11; sel=2'b11; #10;
+  $monitor("t=%0t, A=%d, B=%d, C=%d, D=%d, sel=%d, X=%d", $time, A, B, C, D, sel, X);
+  
+A=2'b00;  
+B=2'b01;  
+C=2'b10;  
+D=2'b11;  
+sel = 2'b00; 
+  
+ #10 sel = 2'b01;
+  #10 sel = 2'b11;
+  #10 sel = 2'b10;
+  
+  
   #100 $finish;
-  $monitor("t=%0t | A=%d | B=%d | C=%d | D=%d | sel=%d | X=%d", $time A, B, C, D, sel, X};
 end
+
 endmodule
 
   
