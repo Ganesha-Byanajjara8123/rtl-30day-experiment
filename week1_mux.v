@@ -1,17 +1,19 @@
 //4:1 MUX
 
 module MUX(
-  input A, B, C, D
-  input S1, S2
-  output X
+  input  [7:0]  A, B, C, D,
+  input  [3:0 ] sel,
+  output [7:0]  X
 );
 
-  always@(posedge clk) begin
-    case(S1, S2)
-      X : A; S1;
-      X : B; S2;
-      X : C; S1;
-      X : D; S2;
+  always@(*) begin
+    case(sel)
+      2'b00: X = A;
+      2'b01: X = B;
+      2'b10: X = C;
+      2'b11: X = D;
+      default: X = 8'b00; 
       end
 endmodule
+      
       
