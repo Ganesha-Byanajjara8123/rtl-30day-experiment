@@ -6,6 +6,7 @@ module tb_updown_counter();
     logic en;
     logic up_down;
     logic [WIDTH-1:0] count;
+    logic tc;
 
     updown_counter_8bit uut (
         .clk(clk),
@@ -24,25 +25,21 @@ module tb_updown_counter();
         reset = 1'b1;
         en = 1'b0;
         up_down = 1'b0;
+        #15 rst = 1'b1;
+        @(posedge clk)
 
-        #10;
-        reset = 1'b0; 
-        en = 1'b1;
         up_down = 1'b1;
-        #200; 
+        repeate@(20) @(posedge clk);
+
         up_down = 1'b0;
-       #50;
-        reset = 1'b1;
-        #10;
-        en = 1'b0;
-        reset = 1'b0; 
-        #50;
+        repeate@(20) @(posedge clk);
+        
 
         $display("Simulation finished");
         $finish; 
     end
 
     initial begin
-      $monitor("Time=%0t, Reset=%0b, en=%0b, Up/Down=%0b, Count=%0d", $time, reset, en, up_down, count);  
+        $monitor("Time=%0t, Reset=%0b, en=%0b, Up/Down=%0b, Count=%0d, tc=%d", $time, reset, en, up_down, count, tc);  
     end
 endmodule
