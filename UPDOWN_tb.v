@@ -1,11 +1,11 @@
 // Code your testbench here
 // or browse Examples
 module tb_updown_counter();
-    reg clk;
-    reg reset;
-    reg en;
-    reg up_down;
-    wire [7:0] count;
+    logic clk;
+    logic reset;
+    logic en;
+    logic up_down;
+    logic [WIDTH-1:0] count;
 
     updown_counter_8bit uut (
         .clk(clk),
