@@ -1,11 +1,12 @@
 // Code your design here
-module updown_counter_8bit #(parameter WIDTH = 8)(
-    logic clk,
-    logic reset,
-    logic en, 
-    logic up_down,
-    logic [WIDTH-1:0] count,
-    logic tc       //tc (terminal count)
+// Code your design here
+module updown_counter #(parameter WIDTH = 8)(
+    input logic clk,
+    input logic reset,
+    input logic en, 
+    input logic up_down,
+    output logic [WIDTH-1:0] count,
+    output logic tc       //tc (terminal count)
 );
 
   always_ff @(posedge clk)begin
