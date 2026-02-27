@@ -1,13 +1,13 @@
 // Code your design here
-module updown_counter_8bit(
-    input clk,
-    input reset,
-    input en, 
-    input up_down, 
-    output reg [7:0] count
+module updown_counter_8bit #(parameter WIDTH = 8)(
+    logic clk,
+    logic reset,
+    logic en, 
+    logic up_down, 
+    logic [WIDTH-1:0] count
 );
 
-  always @(posedge clk)begin
+  always_ff @(posedge clk)begin
     if (reset == 1'b1) begin
       
         count <= 8'd0;
