@@ -1,1 +1,66 @@
+//tb code for FIFO
 
+module fifo_syn_tb();
+  localparam WIDTH = 8;
+  localparam DEPTH = 4;
+  
+  logic clk;
+  logic rst;
+  logic wr_en;
+  logic rd_en;
+  logic [WIDTH-1:0] wdata;
+  logic [WIDTH-1:0] rdata;
+  logic full;
+  logic empty;
+
+  fifo_syn uut #(
+    .WIDTH(WIDTH), .DEPTH(DEPTH), .clk(clk), .rst(rst), .wr_en(wr_en), .rd_en(rd_en), .wdata(wdata), .rdata(rdata), .full(full), .empty(empty)
+  );
+
+  initial begin
+    clk = 0;
+    forever #15 clk = ~ clk;
+  end
+
+  initial begin
+    rst = 1;
+    @(posedge clk);
+    @(posedge clk);
+    rst = 0;
+ // write data/input  
+  wdata = 10;
+wr_en = 1;
+@(posedge clk);
+wr_en = 0;
+    
+   wdata = 20;
+wr_en = 1;
+@(posedge clk);
+wr_en = 0;
+
+    wdata = 30;
+    wr_en = 1;
+    @(posedge clk);
+    wr_en = 0;
+//read data/ output
+    rd_en = 1;
+    @(posedge clk);
+    rd_en = 0;
+
+       rd_en = 1;
+    @(posedge clk);
+    rd_en = 0;
+
+       rd_en = 1;
+    @(posedge clk);
+    rd_en = 0;
+
+    #100; $finish;
+  end
+  
+  initial begin
+   $monitor("time=%0t rst=%0b wr_en=%0b rd_en=%0b wdata=%0d rdata=%0d",
+            $time, rst, wr_en, rd_en, wdata, rdata);
+end
+endmodule
+    
