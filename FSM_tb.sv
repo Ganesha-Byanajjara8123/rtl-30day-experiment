@@ -58,3 +58,18 @@ module fsm_sequence_tb();
     end
 
 endmodule
+
+
+
+//output 
+# KERNEL: t=0 rst=1 din=0 detected=0 state=x
+# KERNEL: t=5 rst=1 din=0 detected=0 state=0
+# KERNEL: t=15 rst=0 din=0 detected=0 state=0
+# KERNEL: t=25 rst=0 din=1 detected=0 state=0
+# KERNEL: t=35 rst=0 din=0 detected=0 state=1
+# KERNEL: t=45 rst=0 din=1 detected=0 state=2
+# KERNEL: t=55 rst=0 din=1 detected=1 state=3
+# KERNEL: t=65 rst=0 din=0 detected=0 state=1
+# KERNEL: t=75 rst=0 din=1 detected=0 state=2
+# KERNEL: t=85 rst=0 din=1 detected=1 state=3
+# KERNEL: t=95 rst=0 din=1 detected=0 state=1
