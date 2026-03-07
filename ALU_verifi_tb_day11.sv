@@ -27,7 +27,7 @@ driver drv;
 endmodule
 
 
-//output i got but it still had 6 warning i will debug them all in day12
+// i got /output but it still had 6 warning i will debug them all in day12
 
 work = ./work/work.lib
 WARNING VCP2947 "Default parameter values used for class std::mailbox specialization." "design.sv" 20  14
