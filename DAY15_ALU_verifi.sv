@@ -13,11 +13,12 @@ interface alu_if;
 endinterface
 
 
-//for transaction class 
+
 class alu_txn;
   rand bit [7:0] A;
   rand bit [7:0] B;
   rand bit [2:0] op;
+  bit[7:0] result;
   
   constraint op_c{
     op inside {3'b000, 3'b001, 3'b010, 3'b011, 3'b100};
@@ -56,6 +57,7 @@ endclass
   class driver;
    alu_txn txn;
     mailbox mbx;
+    virtual alu_if vif;
      	
 
     function new(mailbox mbx, virtual alu_if vif);
@@ -64,7 +66,7 @@ endclass
       endfunction
 
     task run();
-      repeat(5) begin
+      forever begin
         mbx.get(txn);  //take transaction from mailbox-store in txn
         txn.display();
         vif.A = txn.A;
@@ -87,7 +89,7 @@ class monitor;     //make flow like Generator → Driver → DUT → Monitor →
    endfunction
   
    task run();
-     forever 
+     forever  begin
      #2;
      txn = new();
      
@@ -118,4 +120,9 @@ class scoreboard;
       mbx.get(txn);
       check(txn);
     end 
+  endtask
+  
+  task check(alu_txn txn);
+    $display("scoreboard checking result = %0d",txn.result);
+  endtask
 endclass
