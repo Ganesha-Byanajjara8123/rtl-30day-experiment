@@ -17,6 +17,8 @@ Mailbox (mbx_ms)
 Scoreboard
 
 
+// Code your testbench here
+// or browse Examples
 module tb;
   
   alu_if vif();
@@ -29,7 +31,10 @@ module tb;
   monitor mon;
   scoreboard sb;
   
-  
+  alu dut(
+    .A(A.vif), .B(B.vif), .op(op.vif), .result(result.vif)
+  );
+
   initial begin
     mbx_gd = new();
     mbx_ms = new();
@@ -44,9 +49,6 @@ module tb;
     drv.run();
     mon.run();
     sb.run ();
-  join`
-    
+    join
   end
-  
-  
 endmodule
